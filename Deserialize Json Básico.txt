@@ -1,0 +1,19 @@
+Deserialize Json básico
+
+
+
+      StaticJsonDocument<256> doc;//tamanho em bytes reservado para armazenar o arquivo json
+
+      DeserializationError error = deserializeJson(doc, payload);//realiza a conversao do json atribuindo a doc o resultado
+
+
+      if(error){
+          Serial.print(F("deserializeJson() failed: "));
+          Serial.println(error.f_str());
+          return;
+      }//verifica se a conversao foi bem sucedida ou nao
+
+      JsonObject root_0 = doc[0];//define um JsonObject chamado root_0 que vai receber os dados de doc para ser usado
+
+      int id = root_0["id"];//atribui a uma variavel os valores desejados do json
+      const char* nome = root_0["nome"];
