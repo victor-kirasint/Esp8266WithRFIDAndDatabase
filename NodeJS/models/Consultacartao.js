@@ -10,8 +10,10 @@ const consultacartao = db.sequelize.define('consultacartaos', {
     nome:{
         type: db.Sequelize.CHAR
     }
+
+    
+    
 })
 
-consultacartao.sync()
 
 module.exports = consultacartao

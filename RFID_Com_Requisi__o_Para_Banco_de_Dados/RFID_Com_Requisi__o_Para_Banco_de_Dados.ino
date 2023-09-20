@@ -4,7 +4,6 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
-#include <WiFiUdp.h>
 #include <ArduinoOTA.h>
 
 const char* ssid = "Irmandade";
@@ -20,10 +19,6 @@ const char* url = "http://192.168.0.123:9010/teste";
 
 const int buzzer = 15;
 const int luz = 5;
-
-Bounce debouncer = Bounce();
-
-bool ledLigado = false;
 //esse objeto 'chave' é utilizado para autenticação
 MFRC522::MIFARE_Key key;
 //código de status de retorno da autenticação

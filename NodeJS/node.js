@@ -1,11 +1,15 @@
 const express = require("express");
 const app = express();
 const handlebars = require('express-handlebars')
+
+//Define os models a ser usados
 const consultar = require('./models/Consultacartao.js')
+const gravarentrada = require('./models/Gravaentrada.js')
+//fim
 const bodyParser = require('body-parser')
 
 
-//config handlebars template engine
+
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -14,20 +18,31 @@ app.use(bodyParser.json())
 
 //fim
 
-app.get('/', function(req, res){
-    res.send('funcionando')
+app.get('/', async function(req, res){
+    res.send("funcionando")
 })
 
-app.post('/teste',function(req, res){
-    var dados = consultar.findAll({
+app.post('/teste', async function(req, res){
+    var criar = await consultar.findOne({
+        attributes:['nome'],
         where:{
-            id: req.body.id
+            id:req.body.id
         }
-    }).then(function(dados){
-        res.send(dados)
-    });
-}
-)
+    })
+    gravarentrada.create({
+        nome:criar.nome
+    })
+
+    var dados = await consultar.findAll({
+        where:{
+            id:req.body.id
+        }
+    })
+    .then(function(dados){
+        res.send(dados) 
+    })
+    
+})
 
 
 app.listen(9010, function(){

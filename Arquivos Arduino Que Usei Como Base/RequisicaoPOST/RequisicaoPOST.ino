@@ -1,14 +1,11 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
-#include <ArduinoJson.h>
+
 
 const char* ssid = "Irmandade";
 const char* password = "85979278";
 
 const char* url = "http://192.168.0.123:9010/teste";
-
-
-String json[100];
 
 
 void setup() {
@@ -44,6 +41,7 @@ void loop() {
       String payload = http.getString();//Atraves do http.getString(); atribui a variavel payload a resposta da requisição
       Serial.println(httpCode);//escreve no monitor serial o codigo de resposta do servidor
       Serial.println(payload);//escreve no monitor serial o resultado da requisição
+
 
     } else {
       Serial.println("Erro na requisição HTTP");//caso a requisição dê erro ele escreve isto
