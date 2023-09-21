@@ -222,7 +222,6 @@ void leituraDados()
     http.end();
   }
 }
-}
 void buzzerLibera() {
   // Frequência do som para liberação
   int frequencia = 1000; // Altere para a frequência desejada
