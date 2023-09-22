@@ -29,18 +29,26 @@ app.post('/teste', async function(req, res){
             id:req.body.id
         }
     })
-    gravarentrada.create({
-        nome:criar.nome
-    })
-
     var dados = await consultar.findAll({
         where:{
             id:req.body.id
         }
     })
-    .then(function(dados){
-        res.send(dados) 
+
+
+    if (criar == null) {
+        gravarentrada.create({
+            nome:"Desconhecido"
+        })
+        res.send(dados);
+    }
+    else{
+    gravarentrada.create({
+        nome:criar.nome
+    }).then(function(dados){
+        res.send(dados)
     })
+    }
     
 })
 
