@@ -23,13 +23,13 @@ app.get('/', async function(req, res){
 })
 
 app.post('/teste', async function(req, res){
-    var criar = await consultar.findOne({
+    const criar = await consultar.findOne({
         attributes:['nome'],
         where:{
             id:req.body.id
         }
     })
-    var dados = await consultar.findAll({
+    const dados = await consultar.findAll({
         where:{
             id:req.body.id
         }
@@ -45,7 +45,8 @@ app.post('/teste', async function(req, res){
     else{
     gravarentrada.create({
         nome:criar.nome
-    }).then(function(dados){
+    }).then(function(){
+        console.log(dados)
         res.send(dados)
     })
     }
